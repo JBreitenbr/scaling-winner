@@ -18,7 +18,6 @@ export const Marks = ({
 }) => (
     <g className="marks">
       { /*<path className="sphere" d={path({ type: 'Sphere' })}/>*/}
-      {mapped}
     {countries.features.map(feature => {
       const d = rowByNumericCode.get(feature.id);
 
@@ -27,7 +26,7 @@ export const Marks = ({
 
       }
       return (
-        <path style={{stroke:"lightgrey"}} onClick={()=>console.log(d)} 
+        <path style={{stroke:"lightgrey"}} onMouseEnter={()=>console.log(d)}
           fill={d ? colorScale(colorValue(d)) : missingDataColor}
           d={path(feature)}
         />
