@@ -22,7 +22,8 @@ export default function App() {
   let toolTip=d3.select("#tooltip");
   console.log(toolTip);
   let [country,setCountry]=useState("Africa (all countries)")
-  let [year,setYear]=useState('2016');
+  let [year,setYear]=useState('2021');
+
   const worldAtlas = useWorldAtlas();
   const data = useData();
   const codes = useCodes();
@@ -95,6 +96,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],1.1*dimsDict[dim]["m
         rowByNumericCode={rowByNumericCode}
         colorScale={colorScale}
         colorValue={colorValue}
+        setCountry={setCountry}
       />
       
       <Barchart

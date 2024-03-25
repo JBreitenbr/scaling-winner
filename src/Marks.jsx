@@ -14,7 +14,8 @@ export const Marks = ({
   worldAtlas: { countries},
   rowByNumericCode,
   colorScale,
-  colorValue
+  colorValue,
+  setCountry
 }) => (
     <g className="marks">
       { /*<path className="sphere" d={path({ type: 'Sphere' })}/>*/}
@@ -26,7 +27,7 @@ export const Marks = ({
 
       }
       return (
-        <path style={{stroke:"lightgrey"}} onMouseEnter={()=>console.log(d)}
+        <path style={{stroke:"lightgrey"}} onMouseEnter={()=>setCountry(d.country)}
           fill={d ? colorScale(colorValue(d)) : missingDataColor}
           d={path(feature)}
         />

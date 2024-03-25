@@ -1,5 +1,3 @@
-import {Tooltip} from "react-tooltip";
-
 export const Barchart = ({
   dimsDict,
   dim,
@@ -9,7 +7,7 @@ export const Barchart = ({
   dimScale
 }) =>
   dimsDict[dim][country].map((d,i) => (
-    <><a data-tooltip-id={`tooltip_${i}`} key={i}><rect
+    <><rect
       className="mark"
       x="40"
       y={(i+0.5)*h+10}
@@ -20,6 +18,5 @@ export const Barchart = ({
     </rect>
     <text x={dimScale(d)+45} style={{fontSize:`${0.45*h}px`}} y={(i+1.3)*h+10} fill="black">{d}</text>
     <text x="10" style={{fontSize:`${0.5*h}px`}} y={(i+1.25)*h+10}
-fill="black">{2011+i}</text><Tooltip id={`tooltip_${i}`} key={i}><div className="tooltip">
-    aber hallo</div></Tooltip></a></>
+fill="black">{2011+i}</text></>
   ));
