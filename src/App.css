@@ -21,8 +21,20 @@ circle {
   fill: #137B80;
   opacity: 0.3;
 }
-#tooltip {
-  position: absolute;
-  visibility: hidden;
+.tooltip {
+  color: #137B80;
+}
+.tooltip {
+  background-color:#cdcdcd;
+  color: #21234a;
+  padding: 3vh;
+  opacity:1;
+  width: min(220px,65vw);
+  border-radius: 5%;
 }
 
+.yearTab {
+  border: 1px solid #137B80;
+  font-size: 11px;
+  width: 35px;
+}

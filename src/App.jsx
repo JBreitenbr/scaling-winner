@@ -15,13 +15,13 @@ import {cntNames} from './cntNames';
 import { Marks } from './Marks';
 import { Barchart } from './Barchart';
 const width = 385;
-const height = 530;
-//const selectedYear = '2016';
+const height = 535;
+let yearArr=["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
 export default function App() {
   let [dim,setDim]=useState("life_expectancy")
   let toolTip=d3.select("#tooltip");
   console.log(toolTip);
-  let [country,setCountry]=useState("Burundi")
+  let [country,setCountry]=useState("Africa (all countries)")
   let [year,setYear]=useState('2016');
   const worldAtlas = useWorldAtlas();
   const data = useData();
@@ -102,10 +102,16 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],1.1*dimsDict[dim]["m
         dim={dim}
         country={country}
         colorScale={colorScale}
-        h={height/30}
+        h={height/35}
         dimScale= {dimScale}
         />
-    </svg><div style={{display:"flex"}}><div style={year=="2018"?{backgroundColor:"navy",color:"white",width:"50px"}:{width:"50px"}} onClick={()=>setYear('2018')}>2018</div><div style={year=="2021"?{backgroundColor:"navy",color:"white",width:"50px"}:{width:"50px"}} onClick={()=>setYear('2021')}>2021</div></div></div>
+    </svg><div style={{display:"flex"}}>
+  {yearArr.map(function(item) {
+      return (
+        <div className="yearTab" style={year==item?{backgroundColor:"navy",color:"white",width:"50px"}:{width:"50px"}} onClick={()=>setYear(item)}>{item}</div>
+      )
+    })}
+  </div></div>
   );
 };
 

@@ -1,6 +1,6 @@
 import { geoNaturalEarth1, geoPath, geoGraticule,scaleBand,scaleLinear } from 'd3';
 import {dimsDict} from './dimsDict';
-const projection = geoNaturalEarth1().scale(220).translate([100, 150]);
+const projection = geoNaturalEarth1().scale(220).translate([100, 350]);
 const path = geoPath(projection);
 const graticule = geoGraticule();
 
