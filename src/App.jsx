@@ -2,7 +2,6 @@ import React from 'react';
 import {useState} from 'react';
 import './App.css';
 import ReactDOM from 'react-dom';
-//import { interpolateBlues, scaleSequential, scaleLinear} from 'd3';
 import * as d3 from 'd3';
 import { useWorldAtlas } from './useWorldAtlas';
 import parse from 'html-react-parser';
@@ -10,14 +9,16 @@ import { useData } from './useData';
 import { useCodes } from './useCodes';
 import {dimsDict} from './dimsDict';
 import {colorSchemes} from './colorSchemes';
+import {calcQuantiles} from './calcQuantiles'
 import {dimArr} from './dimArr';
 import {dimBij} from './dimBij';
 import {clause} from './expr';
 import {cntNames} from './cntNames';
 import { Marks } from './Marks';
+import {Legend} from './Legend';
 import { Barchart } from './Barchart';
 const width = 385;
-const height = 535;
+const height = 550;
 let yearArr=["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
 export default function App() {
   let [dim,setDim]=useState("life_expectancy")
@@ -62,7 +63,7 @@ const handleChange2 = (event) => {
   ]);
 let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],1.1*dimsDict[dim]["maxi"]]).range([0.1*width,0.9*width]);
   return (<div style={{display:"flex",flexDirection:"column"}}>
-    <select id="selectButton1" value={dim} onChange={handleChange1}>
+    <div id="dropdown-wrapper"><select id="selectButton1" value={dim} onChange={handleChange1}>
   {dimArr.map(function(item) {
       return (
         <option value={item} key={item}>
@@ -79,7 +80,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],1.1*dimsDict[dim]["m
         </option>
       )
     })}
-</select>
+</select></div>
     <svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
       <Marks
         worldAtlas={worldAtlas}
@@ -88,6 +89,13 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],1.1*dimsDict[dim]["m
         colorValue={colorValue}
         setCountry={setCountry}
       />
+      <Legend
+        dimsDict={dimsDict}
+        dim={dim}
+        colorScale={colorScale}
+        h={height/35}
+        calcQuantiles={calcQuantiles}/>
+      
       {country=="Seychelles" && dim=="unemployment"?<text x="150" y="100">no data</text>:
       <Barchart
         dimsDict={dimsDict}
@@ -101,7 +109,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],1.1*dimsDict[dim]["m
     </svg><div style={{display:"flex"}}>
   {yearArr.map(function(item) {
       return (
-        <div className="yearTab" style={year==item?{backgroundColor:"navy",color:"white",width:"50px"}:{width:"50px"}} onClick={()=>setYear(item)}>{item}</div>
+        <div className="yearTab" style={year==item?{backgroundColor:colorScale(dimsDict[dim]["maxi"]),color:"white",width:"50px"}:{backgroundColor:colorScale(dimsDict[dim]["mini"]),width:"50px"}} onClick={()=>setYear(item)}>{item}</div>
       )
     })}
   </div></div>

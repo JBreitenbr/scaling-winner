@@ -1,7 +1,7 @@
 import { geoNaturalEarth1, geoPath, geoGraticule,scaleBand,scaleLinear } from 'd3';
 import {dimsDict} from './dimsDict';
 let w=0.6*window.innerWidth;
-const projection = geoNaturalEarth1().scale(220).translate([100, 350]);
+const projection = geoNaturalEarth1().scale(220).translate([100, 400]);
 
 const path = geoPath(projection);
 const missingDataColor = 'gray';

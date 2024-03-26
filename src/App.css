@@ -2,6 +2,7 @@ body {
   margin: 0;
   overflow: hidden;
   font-family: 'Poppins', sans-serif;
+  background-color: beige;
 }
 pre {
   font-size: 7em;
@@ -34,11 +35,28 @@ circle {
 }
 
 .yearTab {
-  border: 1px solid #137B80;
+  border: 1px solid darkgrey;
   font-size: 11px;
   width: 35px;
 }
 
+.legend,.dim-rect {
+  stroke: darkgrey;
+  stroke-width: 1px;
+}
+.quantiles {
+  font-size: 9px;
+}
+#dropdown-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#selectButton1, #selectButton2 {
+  width: 80%;
+}
 #canvas {
   font-family: serif;
 }
