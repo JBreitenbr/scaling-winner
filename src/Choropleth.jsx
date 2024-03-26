@@ -1,5 +1,13 @@
 import * as d3 from 'd3';
 const missingDataColor = 'gray';
+let scaleF=210;
+let transX=100;
+let transY=400;
+/*if(window.innerWidth<400){
+  scaleF=160;
+}*/
+let projection=d3.geoMercator().scale(scaleF).translate([transX,transY]);
+let path=d3.geoPath(projection);
 export const Choropleth = ({
   worldAtlas: { countries},
   rowByNumericCode,
@@ -18,10 +26,9 @@ export const Choropleth = ({
       return (
         <path style={{stroke:"lightgrey"}} onMouseEnter={()=>setCountry(d.country)}
           fill={d ? colorScale(colorValue(d)) : missingDataColor}
-          d={d3.geoPath(d3.geoMercator().scale(200).translate([100,400]))(feature)}
+          d={path(feature)}
         />
       );
     })}
-      {/*<path className="interiors" d={path(interiors)} />*/}
   </g>
 );

@@ -4,7 +4,6 @@ import './App.css';
 import ReactDOM from 'react-dom';
 import * as d3 from 'd3';
 import { useWorldAtlas } from './useWorldAtlas';
-import parse from 'html-react-parser';
 import { useData } from './useData';
 import { useCodes } from './useCodes';
 import {dimsDict} from './dimsDict';
@@ -19,7 +18,7 @@ import {Legend} from './Legend';
 import { Barchart } from './Barchart';
 let width = 0.95*window.innerWidth;
 let height = 0.9*window.innerHeight;
-
+console.log(window.innerHeight);
 let yearArr=["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
 export default function App() {
   let [dim,setDim]=useState("life_expectancy")
@@ -63,6 +62,7 @@ const handleChange2 = (event) => {
     dimsDict[dim]["mini"],dimsDict[dim]["maxi"]
   ]);
 let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([0.1*width,0.9*width]);
+if(window.innerWidth>window.innerHeight){dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([0.1*width,0.5*width])}
   return (<div style={{display:"flex",flexDirection:"column"}}>
     <div id="dropdown-wrapper"><select id="selectButton1" value={dim} onChange={handleChange1}>
   {dimArr.map(function(item) {
