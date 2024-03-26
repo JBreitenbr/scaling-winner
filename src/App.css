@@ -38,3 +38,7 @@ circle {
   font-size: 11px;
   width: 35px;
 }
+
+#canvas {
+  font-family: serif;
+}

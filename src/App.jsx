@@ -5,12 +5,14 @@ import ReactDOM from 'react-dom';
 //import { interpolateBlues, scaleSequential, scaleLinear} from 'd3';
 import * as d3 from 'd3';
 import { useWorldAtlas } from './useWorldAtlas';
+import parse from 'html-react-parser';
 import { useData } from './useData';
 import { useCodes } from './useCodes';
 import {dimsDict} from './dimsDict';
 import {colorSchemes} from './colorSchemes';
 import {dimArr} from './dimArr';
 import {dimBij} from './dimBij';
+import {clause} from './expr';
 import {cntNames} from './cntNames';
 import { Marks } from './Marks';
 import { Barchart } from './Barchart';
@@ -19,8 +21,7 @@ const height = 535;
 let yearArr=["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
 export default function App() {
   let [dim,setDim]=useState("life_expectancy")
-  let toolTip=d3.select("#tooltip");
-  console.log(toolTip);
+  
   let [country,setCountry]=useState("Africa (all countries)")
   let [year,setYear]=useState('2021');
 
@@ -33,16 +34,7 @@ export default function App() {
 const handleChange2 = (event) => {
   setCountry(event.target.value);
 };
-const handleClick = (e) => {
-  console.log("Heureka")
-}
-  const handleMouseEnter = e => {
-    //e.target.style.background = "grey"
-    console.log(e.target)
-  }
-  const handleMouseLeave = e => {
-    e.target.style.background = "maroon"
-  }
+
   if (!worldAtlas || !data || !codes) {
     return <pre>Loading...</pre>;
   }
@@ -61,8 +53,6 @@ const handleClick = (e) => {
     const alpha3Code = d.Code;
     const numericCode = numericCodeByAlphaCode.get(alpha3Code);
     rowByNumericCode.set(numericCode, d);
-    console.log("*")
-    console.log(numericCode);
   });
 
   const colorValue = d => d[dim];
@@ -90,7 +80,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],1.1*dimsDict[dim]["m
       )
     })}
 </select>
-    <svg width={width} height={height} style={{backgroundColor:"beige"}}>
+    <svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
       <Marks
         worldAtlas={worldAtlas}
         rowByNumericCode={rowByNumericCode}
@@ -98,7 +88,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],1.1*dimsDict[dim]["m
         colorValue={colorValue}
         setCountry={setCountry}
       />
-      
+      {country=="Seychelles" && dim=="unemployment"?<text x="150" y="100">no data</text>:
       <Barchart
         dimsDict={dimsDict}
         dim={dim}
@@ -106,7 +96,8 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],1.1*dimsDict[dim]["m
         colorScale={colorScale}
         h={height/35}
         dimScale= {dimScale}
-        />
+        clause={clause}
+        />}
     </svg><div style={{display:"flex"}}>
   {yearArr.map(function(item) {
       return (
