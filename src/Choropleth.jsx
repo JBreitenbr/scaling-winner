@@ -18,7 +18,7 @@ export const Choropleth = ({
       return (
         <path style={{stroke:"lightgrey"}} onMouseEnter={()=>setCountry(d.country)}
           fill={d ? colorScale(colorValue(d)) : missingDataColor}
-          d={d3.geoPath(d3.geoMercator().scale(220).translate([100,400]))(feature)}
+          d={d3.geoPath(d3.geoMercator().scale(200).translate([100,400]))(feature)}
         />
       );
     })}
