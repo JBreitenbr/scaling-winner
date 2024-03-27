@@ -16,8 +16,9 @@ import {cntNames} from './cntNames';
 import { Choropleth } from './Choropleth';
 import {Legend} from './Legend';
 import { Barchart } from './Barchart';
+let transX=75;
 let width = 0.95*window.innerWidth;
-let height = 0.9*window.innerHeight;
+let height = 0.92*window.innerHeight;
 console.log(window.innerHeight);
 let yearArr=["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
 export default function App() {
@@ -83,21 +84,7 @@ if(window.innerWidth>window.innerHeight){dimScale=d3.scaleLinear().domain([dimsD
     })}
 </select></div>
     <svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
-      <Choropleth
-        worldAtlas={worldAtlas}
-        rowByNumericCode={rowByNumericCode}
-        colorScale={colorScale}
-        colorValue={colorValue}
-        setCountry={setCountry}
-      />
-      <Legend
-        dimsDict={dimsDict}
-        dim={dim}
-        colorScale={colorScale}
-        h={height/35}
-        calcQuantiles={calcQuantiles}/>
-      
-      {country=="Seychelles" && dim=="unemployment"?<text x="150" y="100">no data</text>:
+       {country=="Seychelles" && dim=="unemployment"?<text x="150" y="100">no data</text>:
       <Barchart
         dimsDict={dimsDict}
         dim={dim}
@@ -107,6 +94,22 @@ if(window.innerWidth>window.innerHeight){dimScale=d3.scaleLinear().domain([dimsD
         dimScale= {dimScale}
         clause={clause}
         />}
+    <g id="supergroup" transform= 
+      {window.innerWidth<400?              "translate(25,0)":"translate(250,0)"} >
+      <Legend
+        dimsDict={dimsDict}
+        dim={dim}
+        colorScale={colorScale}
+        h={height/35}
+        calcQuantiles={calcQuantiles}/>
+      <Choropleth
+        worldAtlas={worldAtlas}
+        rowByNumericCode={rowByNumericCode}
+        colorScale={colorScale}
+        colorValue={colorValue}
+        setCountry={setCountry}
+      />
+    </g> 
     </svg><div style={{display:"flex"}}>
   {yearArr.map(function(item) {
       return (
