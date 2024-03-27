@@ -16,17 +16,29 @@ import {cntNames} from './cntNames';
 import { Choropleth } from './Choropleth';
 import {Legend} from './Legend';
 import { Barchart } from './Barchart';
-let transX=75;
-let width = 0.95*window.innerWidth;
-let height = 0.92*window.innerHeight;
+
 console.log(window.innerHeight);
 let yearArr=["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
 export default function App() {
+  
+let [width, setWidth]=useState(385);
+let [height, setHeight]=useState(550);
   let [dim,setDim]=useState("life_expectancy")
   
   let [country,setCountry]=useState("Africa (all countries)")
   let [year,setYear]=useState('2021');
-
+const handleResize = () => useEffect(() => {
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+setHeight(window.innerHeight);
+        };
+ 
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+ 
   const worldAtlas = useWorldAtlas();
   const data = useData();
   const codes = useCodes();
@@ -63,7 +75,6 @@ const handleChange2 = (event) => {
     dimsDict[dim]["mini"],dimsDict[dim]["maxi"]
   ]);
 let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([35,280]);
-if(window.innerWidth>window.innerHeight){dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([0.1*width,0.5*width])}
   return (<div style={{display:"flex",flexDirection:"column"}}>
     <div id="dropdown-wrapper"><select id="selectButton1" value={dim} onChange={handleChange1}>
   {dimArr.map(function(item) {
@@ -83,8 +94,8 @@ if(window.innerWidth>window.innerHeight){dimScale=d3.scaleLinear().domain([dimsD
       )
     })}
 </select></div>
-    <svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
-  <g id="topgroup" transform={window.innerWidth>600?"translate(0,30) scale(1.2)":"translate(0,20) scale(1.0)"}>
+  <div><svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
+  <g id="topgroup">
       <Barchart
         dimsDict={dimsDict}
         dim={dim}
@@ -92,6 +103,7 @@ if(window.innerWidth>window.innerHeight){dimScale=d3.scaleLinear().domain([dimsD
         colorScale={colorScale}
         dimScale= {dimScale}
         clause={clause}
+        w={width/25}
         />
   </g>
       {/*
@@ -111,7 +123,7 @@ if(window.innerWidth>window.innerHeight){dimScale=d3.scaleLinear().domain([dimsD
         setCountry={setCountry}
       />
     </g> */}
-    </svg>{/*<div style={{display:"flex"}}>
+    </svg></div>{/*<div style={{display:"flex"}}>
   {yearArr.map(function(item) {
       return (
         <div className="yearTab" style={year==item?{backgroundColor:colorScale(dimsDict[dim]["maxi"]),color:"white",width:"50px"}:{backgroundColor:colorScale(dimsDict[dim]["mini"]),width:"50px"}} onClick={()=>setYear(item)}>{item}</div>
