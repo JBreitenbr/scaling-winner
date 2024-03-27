@@ -20,11 +20,11 @@ import { Barchart } from './Barchart';
 console.log(window.innerHeight);
 let yearArr=["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
 export default function App() {
-  
+
 let [width, setWidth]=useState(window.innerWidth);
 let [height, setHeight]=useState(window.innerHeight);
   let [dim,setDim]=useState("life_expectancy")
-  
+
   let [country,setCountry]=useState("Africa (all countries)")
   let [year,setYear]=useState('2021');
 const handleResize = () => useEffect(() => {
@@ -32,13 +32,13 @@ const handleResize = () => useEffect(() => {
             setWidth(window.innerWidth);
 setHeight(window.innerHeight);
         };
- 
+
         window.addEventListener("resize", handleResize);
         return () => {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
- 
+
   const worldAtlas = useWorldAtlas();
   const data = useData();
   const codes = useCodes();
@@ -52,14 +52,14 @@ const handleChange2 = (event) => {
   if (!worldAtlas || !data || !codes) {
     return <pre>Loading...</pre>;
   }
-  
+
   const numericCodeByAlphaCode = new Map();
   codes.forEach(code => {
     const alpha3Code = code['alpha-3'];
     const numericCode = code['country-code'];
     numericCodeByAlphaCode.set(alpha3Code, numericCode);
   });
-  
+
   const filteredData = data.filter(d => d.Year === year);
 
   const rowByNumericCode = new Map();
@@ -74,7 +74,7 @@ const handleChange2 = (event) => {
   const colorScale = d3.scaleSequential(colorSchemes[dim]).domain([
     dimsDict[dim]["mini"],dimsDict[dim]["maxi"]
   ]);
-let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([35,280]);
+let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([0.1*Math.min(width,height),0.85*Math.min(width,height)]);
   return (<div style={{display:"flex",flexDirection:"column"}}>
     <div id="dropdown-wrapper"><select id="selectButton1" value={dim} onChange={handleChange1}>
   {dimArr.map(function(item) {
@@ -103,7 +103,8 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
         colorScale={colorScale}
         dimScale= {dimScale}
         clause={clause}
-        w={width/25}
+        h={height/35}
+        w={width}
         />
   </g>
       {/*
