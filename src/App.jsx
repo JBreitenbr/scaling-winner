@@ -95,7 +95,7 @@ if(window.innerWidth>window.innerHeight){dimScale=d3.scaleLinear().domain([dimsD
         clause={clause}
         />}
     <g id="supergroup" transform= 
-      {window.innerWidth<550?              "translate(25,0)":"translate(250,0)"} >
+      {window.innerWidth<550?              "translate(25,0)":"translate(250,0) scale(1.5)"} >
       <Legend
         dimsDict={dimsDict}
         dim={dim}
