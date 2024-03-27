@@ -22,7 +22,8 @@ let yearArr=["2011","2012","2013","2014","2015","2016","2017","2018","2019","202
 export default function App() {
 
 let [width, setWidth]=useState(window.innerWidth);
-let [height, setHeight]=useState(window.innerHeight);
+let [height, setHeight]=useState(0.85*window.innerHeight);
+
   let [dim,setDim]=useState("life_expectancy")
 
   let [country,setCountry]=useState("Africa (all countries)")
@@ -75,7 +76,7 @@ const handleChange2 = (event) => {
     dimsDict[dim]["mini"],dimsDict[dim]["maxi"]
   ]);
 let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([0.1*Math.min(width,height),0.85*Math.min(width,height)]);
-  return (<div style={{display:"flex",flexDirection:"column"}}>
+  return (<div style={{display:"flex",flexDirection:"column"}}><div>{width} {height}</div>
     <div id="dropdown-wrapper"><select id="selectButton1" value={dim} onChange={handleChange1}>
   {dimArr.map(function(item) {
       return (
@@ -107,9 +108,9 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
         w={width}
         />
   </g>
-      {/*
+      
     <g id="supergroup" transform= 
-      {window.innerWidth<550?              "translate(25,0)":"translate(250,0) scale(1.5)"} >
+      {window.innerWidth<550?              "translate(0,0)":"translate(250,0) scale(1.5)"} >
       <Legend
         dimsDict={dimsDict}
         dim={dim}
@@ -123,14 +124,14 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
         colorValue={colorValue}
         setCountry={setCountry}
       />
-    </g> */}
-    </svg></div>{/*<div style={{display:"flex"}}>
+    </g> 
+    </svg></div><div style={{display:"flex"}}>
   {yearArr.map(function(item) {
       return (
         <div className="yearTab" style={year==item?{backgroundColor:colorScale(dimsDict[dim]["maxi"]),color:"white",width:"50px"}:{backgroundColor:colorScale(dimsDict[dim]["mini"]),width:"50px"}} onClick={()=>setYear(item)}>{item}</div>
       )
     })}
-  </div>*/}</div>
+  </div></div>
   );
 };
 

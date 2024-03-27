@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 const missingDataColor = 'gray';
-let scaleF=210;
-let transX=100;
+let scaleF=180;
+let transX=120;
 let transY=410;
 /*if(window.innerWidth<400){
   scaleF=160;
