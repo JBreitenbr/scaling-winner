@@ -84,7 +84,7 @@ if(window.innerWidth>window.innerHeight){dimScale=d3.scaleLinear().domain([dimsD
     })}
 </select></div>
     <svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
-  <g id="topgroup" transform={window.innerWidth>700?"scale(1.2)":"scale(1.0)"}>
+  <g id="topgroup" transform={window.innerWidth>600?"translate(0,30) scale(1.2)":"translate(0,20) scale(1.0)"}>
       <Barchart
         dimsDict={dimsDict}
         dim={dim}
