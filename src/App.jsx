@@ -62,7 +62,7 @@ const handleChange2 = (event) => {
   const colorScale = d3.scaleSequential(colorSchemes[dim]).domain([
     dimsDict[dim]["mini"],dimsDict[dim]["maxi"]
   ]);
-let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([0.1*width,0.9*width]);
+let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([35,280]);
 if(window.innerWidth>window.innerHeight){dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([0.1*width,0.5*width])}
   return (<div style={{display:"flex",flexDirection:"column"}}>
     <div id="dropdown-wrapper"><select id="selectButton1" value={dim} onChange={handleChange1}>
@@ -84,16 +84,17 @@ if(window.innerWidth>window.innerHeight){dimScale=d3.scaleLinear().domain([dimsD
     })}
 </select></div>
     <svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
-       {country=="Seychelles" && dim=="unemployment"?<text x="150" y="100">no data</text>:
+  <g id="topgroup" transform={window.innerWidth>700?"scale(1.2)":"scale(1.0)"}>
       <Barchart
         dimsDict={dimsDict}
         dim={dim}
         country={country}
         colorScale={colorScale}
-        h={height/35}
         dimScale= {dimScale}
         clause={clause}
-        />}
+        />
+  </g>
+      {/*
     <g id="supergroup" transform= 
       {window.innerWidth<550?              "translate(25,0)":"translate(250,0) scale(1.5)"} >
       <Legend
@@ -109,14 +110,14 @@ if(window.innerWidth>window.innerHeight){dimScale=d3.scaleLinear().domain([dimsD
         colorValue={colorValue}
         setCountry={setCountry}
       />
-    </g> 
-    </svg><div style={{display:"flex"}}>
+    </g> */}
+    </svg>{/*<div style={{display:"flex"}}>
   {yearArr.map(function(item) {
       return (
         <div className="yearTab" style={year==item?{backgroundColor:colorScale(dimsDict[dim]["maxi"]),color:"white",width:"50px"}:{backgroundColor:colorScale(dimsDict[dim]["mini"]),width:"50px"}} onClick={()=>setYear(item)}>{item}</div>
       )
     })}
-  </div></div>
+  </div>*/}</div>
   );
 };
 
