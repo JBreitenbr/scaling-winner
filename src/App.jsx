@@ -21,8 +21,8 @@ console.log(window.innerHeight);
 let yearArr=["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
 export default function App() {
   
-let [width, setWidth]=useState(385);
-let [height, setHeight]=useState(550);
+let [width, setWidth]=useState(window.innerWidth);
+let [height, setHeight]=useState(window.innerHeight);
   let [dim,setDim]=useState("life_expectancy")
   
   let [country,setCountry]=useState("Africa (all countries)")
