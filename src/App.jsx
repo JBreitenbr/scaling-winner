@@ -100,7 +100,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
     })}
 </select></div>
   <div><svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
-  <g id="topgroup" transform="translate(0,20)">
+  <g id="topgroup" transform="translate(0,10)">
       <Barchart
         dimsDict={dimsDict}
         dim={dim}
@@ -108,13 +108,13 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
         colorScale={colorScale}
         dimScale= {dimScale}
         clause={clause}
-        h={height/35}
+        h={height/38}
         w={width}
         />
   </g>
       
     <g id="supergroup" transform= 
-      {width<height?              "translate(0,60)":(width<500?"translate(350,-150)":"translate(350,-150) scale(1.3)")} >
+      {width<height?              "translate(0,10)":(width<500?"translate(350,-150)":"translate(350,-150) scale(1.3)")} >
       <Legend
         dimsDict={dimsDict}
         dim={dim}
