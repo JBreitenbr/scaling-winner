@@ -17,7 +17,6 @@ import { Choropleth } from './Choropleth';
 import {Legend} from './Legend';
 import { Barchart } from './Barchart';
 import { Buttongroup } from './Buttongroup';
-console.log(window.innerHeight);
 let yearArr=["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
 export default function App() {
 
@@ -115,7 +114,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
   </g>
       
     <g id="supergroup" transform= 
-      {width<height?              "translate(0,30)":(width<500?"translate(350,-150)":"translate(350,-150) scale(1.3)")} >
+      {width<height?              "translate(0,40)":(width<500?"translate(350,-150)":"translate(350,-150) scale(1.3)")} >
       <Legend
         dimsDict={dimsDict}
         dim={dim}
