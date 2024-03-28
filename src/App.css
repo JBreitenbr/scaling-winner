@@ -22,17 +22,6 @@ circle {
   fill: #137B80;
   opacity: 0.3;
 }
-.tooltip {
-  color: #137B80;
-}
-.tooltip {
-  background-color:#cdcdcd;
-  color: #21234a;
-  padding: 3vh;
-  opacity:1;
-  width: min(220px,65vw);
-  border-radius: 5%;
-}
 
 .yearTab {
   border: 1px solid darkgrey;
@@ -44,9 +33,7 @@ circle {
   stroke: darkgrey;
   stroke-width: 1px;
 }
-.quantiles {
-  font-size: 9px;
-}
+
 #dropdown-wrapper {
   display: flex;
   flex-direction: column;

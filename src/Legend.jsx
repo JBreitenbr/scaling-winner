@@ -14,5 +14,5 @@ export const Legend = ({
       width= {2*18}
       fill={colorScale(d)}
     ></rect>
-    <text className="quantiles" x={(2*i+1.5)*18-2} y={250}>{d}</text></>
+    <text style={{fontSize:`${0.5*h}px`}} x={(2*i+1.5)*18-2} y={225+1.5*h}>{d}</text></>
   ));;

@@ -16,13 +16,13 @@ import {cntNames} from './cntNames';
 import { Choropleth } from './Choropleth';
 import {Legend} from './Legend';
 import { Barchart } from './Barchart';
-
+import { Buttongroup } from './Buttongroup';
 console.log(window.innerHeight);
 let yearArr=["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
 export default function App() {
 
 let [width, setWidth]=useState(window.innerWidth);
-let [height, setHeight]=useState(0.85*window.innerHeight);
+let [height, setHeight]=useState(0.96*window.innerHeight);
 
   let [dim,setDim]=useState("life_expectancy")
 
@@ -75,7 +75,12 @@ const handleChange2 = (event) => {
   const colorScale = d3.scaleSequential(colorSchemes[dim]).domain([
     dimsDict[dim]["mini"],dimsDict[dim]["maxi"]
   ]);
-let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([0.1*Math.min(width,height),0.85*Math.min(width,height)]);
+let boundary;
+if(width<height){
+  boundary=0.85*width;
+}
+else boundary=0.5*width;
+let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([40,boundary]);
   return (<div style={{display:"flex",flexDirection:"column"}}><div>{width} {height}</div>
     <div id="dropdown-wrapper"><select id="selectButton1" value={dim} onChange={handleChange1}>
   {dimArr.map(function(item) {
@@ -110,7 +115,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
   </g>
       
     <g id="supergroup" transform= 
-      {window.innerWidth<550?              "translate(0,0)":"translate(250,0) scale(1.5)"} >
+      {width<height?              "translate(0,0)":(width<500?"translate(350,-150)":"translate(350,-150) scale(1.3)")} >
       <Legend
         dimsDict={dimsDict}
         dim={dim}
@@ -124,14 +129,17 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
         colorValue={colorValue}
         setCountry={setCountry}
       />
+    <Buttongroup
+      h={height/35}
+      yearArr={yearArr}
+      colorScale={colorScale}
+      year={year}
+      setYear={setYear}
+      dimsDict={dimsDict}
+      dim={dim}
+      />
     </g> 
-    </svg></div><div style={{display:"flex"}}>
-  {yearArr.map(function(item) {
-      return (
-        <div className="yearTab" style={year==item?{backgroundColor:colorScale(dimsDict[dim]["maxi"]),color:"white",width:"50px"}:{backgroundColor:colorScale(dimsDict[dim]["mini"]),width:"50px"}} onClick={()=>setYear(item)}>{item}</div>
-      )
-    })}
-  </div></div>
+    </svg></div></div>
   );
 };
 
