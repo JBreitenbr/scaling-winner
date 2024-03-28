@@ -81,7 +81,7 @@ if(width<height){
 }
 else boundary=0.5*width;
 let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([40,boundary]);
-  return (<div style={{display:"flex",flexDirection:"column"}}><div>{width} {height}</div>
+  return (<div style={{display:"flex",flexDirection:"column"}}><h3>Africa in Data</h3>
     <div id="dropdown-wrapper"><select id="selectButton1" value={dim} onChange={handleChange1}>
   {dimArr.map(function(item) {
       return (
@@ -101,7 +101,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
     })}
 </select></div>
   <div><svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
-  <g id="topgroup">
+  <g id="topgroup" transform="translate(0,20)">
       <Barchart
         dimsDict={dimsDict}
         dim={dim}
@@ -115,7 +115,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
   </g>
       
     <g id="supergroup" transform= 
-      {width<height?              "translate(0,0)":(width<500?"translate(350,-150)":"translate(350,-150) scale(1.3)")} >
+      {width<height?              "translate(0,30)":(width<500?"translate(350,-150)":"translate(350,-150) scale(1.3)")} >
       <Legend
         dimsDict={dimsDict}
         dim={dim}

@@ -22,7 +22,12 @@ circle {
   fill: #137B80;
   opacity: 0.3;
 }
-
+h3 {
+  text-align: center;
+  font-family: 'Lora', serif;
+  margin:3px 3px 10px 3px;
+  font-weight: 500;
+}
 .yearTab {
   border: 1px solid darkgrey;
   font-size: 11px;
