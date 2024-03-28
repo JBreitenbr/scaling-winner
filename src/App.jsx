@@ -114,7 +114,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
   </g>
       
     <g id="supergroup" transform= 
-      {width<height?              "translate(0,40)":(width<500?"translate(350,-150)":"translate(350,-150) scale(1.3)")} >
+      {width<height?              "translate(0,60)":(width<500?"translate(350,-150)":"translate(350,-150) scale(1.3)")} >
       <Legend
         dimsDict={dimsDict}
         dim={dim}
