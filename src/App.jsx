@@ -34,7 +34,7 @@ setHeight(window.innerHeight);
             window.removeEventListener("resize", handleResize);
         };
     }, []);
-console.log(typeof Object.keys(dimBij))
+
   const worldAtlas = useWorldAtlas();
   const data = useData();
   const codes = useCodes();
