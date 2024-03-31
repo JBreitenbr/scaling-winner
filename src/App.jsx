@@ -7,17 +7,13 @@ import { useWorldAtlas } from './useWorldAtlas';
 import { useData } from './useData';
 import { useCodes } from './useCodes';
 import {dimsDict} from './dimsDict';
-import {colorSchemes} from './colorSchemes';
-import {calcQuantiles} from './calcQuantiles'
-import {dimArr} from './dimArr';
-import {dimBij} from './dimBij';
-import {clause} from './expr';
-import {cntNames} from './cntNames';
+import {dimArr,calcQuantiles,yearArr,colorSchemes,dimBij,cntNames} from './utils';
+import {clause} from './getClause';
 import { Choropleth } from './Choropleth';
 import {Legend} from './Legend';
 import { Barchart } from './Barchart';
 import { Buttongroup } from './Buttongroup';
-let yearArr=["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"];
+
 export default function App() {
 
 let [width, setWidth]=useState(window.innerWidth);
@@ -38,7 +34,7 @@ setHeight(window.innerHeight);
             window.removeEventListener("resize", handleResize);
         };
     }, []);
-
+console.log(typeof Object.keys(dimBij))
   const worldAtlas = useWorldAtlas();
   const data = useData();
   const codes = useCodes();

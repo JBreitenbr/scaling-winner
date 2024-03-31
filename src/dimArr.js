@@ -1,1 +1,0 @@
-export let dimArr=['life_expectancy', 'fertility', 'infant_deaths', 'under5_deaths', 'undernourish', 'electricity','mobile_phone','unemployment','agri','afofi']
