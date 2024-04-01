@@ -72,8 +72,6 @@ const handleChange2 = (event) => {
   const colorScale = d3.scaleSequential(colorSchemes[dim]).domain([
     dimsDict[dim]["mini"],dimsDict[dim]["maxi"]
   ]);
-  console.log(typeof colorScale(56));
-//colorScale(1000)="#333333";
 let boundary;
 if(width<height){
   boundary=0.78*width;
@@ -100,7 +98,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
       )
     })}
 </select></div>
-  <div>{boundary} {colorScale([dim]["maxi"])}<svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
+  <div><svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
   <g id="topgroup" transform={width>500 && width>height?"scale(1.3)":width>500 && width<height?"translate(50,0) scale(1.0)":"scale(1.0)"}><Lines boundary={maxi+60} transY={0}
     strokeColor={colorScale(dimsDict[dim]["maxi"])}                                   />
    {country=="Seychelles" && dim=="unemployment"|| ["Eritrea","Somalia"].includes(country) && dim=="afofi"||["Egypt", "Mozambique", "Somalia", "Seychelles","Liberia"].includes(country) && dim=="hiv"||["Burundi", "Eritrea", "Equatorial Guinea"].includes(country) && dim=="undernourish"?(<text x={boundary/2} y="80" >no data</text>): (<Barchart
