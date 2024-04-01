@@ -72,7 +72,8 @@ const handleChange2 = (event) => {
   const colorScale = d3.scaleSequential(colorSchemes[dim]).domain([
     dimsDict[dim]["mini"],dimsDict[dim]["maxi"]
   ]);
-
+  console.log(typeof colorScale(56));
+//colorScale(1000)="#333333";
 let boundary;
 if(width<height){
   boundary=0.78*width;

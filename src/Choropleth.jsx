@@ -20,7 +20,7 @@ export const Choropleth = ({
       }
       return (
         <path style={{stroke:"lightgrey"}} onMouseEnter={()=>setCountry(d.country)}
-          fill={d ? colorScale(colorValue(d)) : missingDataColor}
+          fill={d && colorValue(d)<5000? colorScale(colorValue(d)) : missingDataColor}
           d={path(feature)}
         />
       );
