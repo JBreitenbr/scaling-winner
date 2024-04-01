@@ -19,8 +19,10 @@ export let dimBij={'life_expectancy': 'Life expectancy at birth, total (years)',
 
 export let cntNames = ['Africa (all countries)','Northern Africa','Eastern Africa','Western Africa','Southern Africa','Middle Africa','Burundi', 'Comoros', 'Djibouti', 'Eritrea', 'Ethiopia', 'Kenya', 'Madagascar', 'Malawi', 'Mauritius', 'Mozambique', 'Rwanda', 'Seychelles', 'Somalia', 'South Sudan', 'Tanzania', 'Uganda', 'Zambia', 'Zimbabwe', 'Angola', 'Cameroon', 'Central African Republic', 'Chad', 'Congo', 'Democratic Republic of the Congo', 'Gabon',  'Sao Tome and Principe', 'Algeria', 'Egypt', 'Libya', 'Morocco', 'Sudan', 'Tunisia', 'Botswana', 'Eswatini', 'Lesotho', 'Namibia', 'South Africa', 'Benin', 'Burkina Faso', 'Cabo Verde', "Cote d'Ivoire", 'Equatorial Guinea', 'Gambia', 'Ghana', 'Guinea', 'Guinea-Bissau', 'Liberia', 'Mali', 'Mauritania', 'Niger', 'Nigeria', 'Senegal', 'Sierra Leone', 'Togo']
 
-export let missDict={"life_expectancy":[], "fertility":[], "pop_under_15":[], "infant_deaths":[],"under5_deaths":[],"tub":[],"electricity":[],"mobile_phone":[],
-"hiv": ["Egypt", "Mozambique", "Somalia", "Seychelles","Liberia"],
-"undernourish": ["Burundi", "Eritrea", "Equatorial Guinea"],
-"unemployment": ["Seychelles"],
-"afofi": ["Eritrea", "Somalia"]}
+let regCountries={
+  "Northern Africa":"Algeria, Egypt, Libya, Morocco, Sudan, Tunisia",
+  "Middle Africa":"Angola, Cameroon, Central African Republic, Chad, Congo, Democratic Republic of the Congo, Gabon, Sao Tome and Principe",
+"Eastern Africa":"Burundi, Comoros, Djibouti, Eritrea, Ethiopia, Kenya, Madagascar, Malawi, Mauritius, Mozambique, Rwanda, Seychelles, Somalia, South Sudan, Tanzania, Uganda, Zambia, Zimbabwe",
+"Western Africa":"Benin, Burkina Faso, Cabo Verde, Cote d'Ivoire, Equatorial Guinea, Gambia, Ghana, Guinea, Guinea-Bissau, Liberia, Mali, Mauritania, Niger, Nigeria, Senegal, Sierra Leone, Togo",
+"Southern Africa":"Botswana, Eswatini, Lesotho, Namibia, South Africa"
+}
