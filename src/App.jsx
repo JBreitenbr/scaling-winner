@@ -11,6 +11,7 @@ import {dimArr,calcQuantiles,yearArr,colorSchemes,dimBij,cntNames} from './utils
 import {clause} from './getClause';
 import { Choropleth } from './Choropleth';
 import {Legend} from './Legend';
+import {Lines} from './Lines';
 import { Barchart } from './Barchart';
 import { Buttongroup } from './Buttongroup';
 
@@ -18,7 +19,8 @@ export default function App() {
 
 let [width, setWidth]=useState(window.innerWidth);
 let [height, setHeight]=useState(0.96*window.innerHeight);
-
+console.log(height/38);
+console.log(width);
   let [dim,setDim]=useState("life_expectancy")
 
   let [country,setCountry]=useState("Africa (all countries)")
@@ -70,12 +72,14 @@ const handleChange2 = (event) => {
   const colorScale = d3.scaleSequential(colorSchemes[dim]).domain([
     dimsDict[dim]["mini"],dimsDict[dim]["maxi"]
   ]);
+
 let boundary;
 if(width<height){
-  boundary=0.85*width;
+  boundary=0.78*width;
 }
-else boundary=0.5*width;
+else boundary=0.3*width;
 let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([40,boundary]);
+  let maxi=dimScale(dimsDict[dim]["maxi"]);
   return (<div style={{display:"flex",flexDirection:"column"}}><h3>Africa in Data</h3>
     <div id="dropdown-wrapper"><select id="selectButton1" value={dim} onChange={handleChange1}>
   {dimArr.map(function(item) {
@@ -95,22 +99,23 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
       )
     })}
 </select></div>
-  <div><svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
-  <g id="topgroup" transform="translate(0,10)">
-      <Barchart
+  <div>{boundary} {colorScale([dim]["maxi"])}<svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
+  <g id="topgroup" transform={width>500 && width>height?"scale(1.3)":width>500 && width<height?"translate(50,0) scale(1.0)":"scale(1.0)"}><Lines boundary={maxi+60} transY={0}
+    strokeColor={colorScale(dimsDict[dim]["maxi"])}                                   />
+   {country=="Seychelles" && dim=="unemployment"|| ["Eritrea","Somalia"].includes(country) && dim=="afofi"||["Egypt", "Mozambique", "Somalia", "Seychelles","Liberia"].includes(country) && dim=="hiv"||["Burundi", "Eritrea", "Equatorial Guinea"].includes(country) && dim=="undernourish"?(<text x={boundary/2} y="80" >no data</text>): (<Barchart
         dimsDict={dimsDict}
         dim={dim}
         country={country}
         colorScale={colorScale}
         dimScale= {dimScale}
         clause={clause}
-        h={height/38}
-        w={width}
-        />
+        />)}
   </g>
       
-    <g id="supergroup" transform= 
+  <g id="supergroup" transform= 
       {width<height?              "translate(0,10)":(width<500?"translate(350,-150)":"translate(350,-150) scale(1.3)")} >
+     < Lines boundary={maxi+60} transY={260}
+    strokeColor={colorScale(dimsDict[dim]["maxi"])}                                   />
       <Legend
         dimsDict={dimsDict}
         dim={dim}
