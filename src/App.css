@@ -1,31 +1,26 @@
 body {
   margin: 0;
   overflow: hidden;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Lora', serif;
   background-color: beige;
 }
 pre {
   font-size: 4em;
 }
-.marks .sphere {
-  fill: #fbfbfb;
+#selectButton1, #selectButton2 {
+  height: 20px;
+  margin: 5px;
+  font-family: Arial;
+  font-size: 14px;
 }
-.marks .interiors {
-  fill: none;
-  stroke: lightgrey;
+#selectButton2 {
+  margin-bottom:10px;
 }
-.marks .graticules {
-  fill: none;
-  stroke: #ececec;
-}
-circle {
-  fill: #137B80;
-  opacity: 0.3;
-}
+
 h3 {
   text-align: center;
   font-family: 'Lora', serif;
-  margin:3px 3px 10px 3px;
+  margin:10px 3px 10px 3px;
   font-weight: 500;
 }
 .yearTab {

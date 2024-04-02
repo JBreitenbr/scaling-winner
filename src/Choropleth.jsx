@@ -10,7 +10,7 @@ export const Choropleth = ({
   colorValue,
   setCountry
 }) => (
-    <g className="marks">
+    <>
     {countries.features.map(feature => {
       const d = rowByNumericCode.get(feature.id);
 
@@ -25,5 +25,5 @@ export const Choropleth = ({
         />
       );
     })}
-  </g>
+  </>
 );

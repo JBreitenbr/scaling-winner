@@ -18,9 +18,8 @@ import { Buttongroup } from './Buttongroup';
 export default function App() {
 
 let [width, setWidth]=useState(window.innerWidth);
-let [height, setHeight]=useState(0.96*window.innerHeight);
-console.log(height/38);
-console.log(width);
+let [height, setHeight]=useState(window.innerHeight);
+
   let [dim,setDim]=useState("life_expectancy")
 
   let [country,setCountry]=useState("Africa (all countries)")
@@ -99,7 +98,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
     })}
 </select></div>
   <div><svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
-  <g id="topgroup" transform={width>500 && width>height?"scale(1.3)":width>500 && width<height?"translate(50,0) scale(1.0)":"scale(1.0)"}><Lines boundary={maxi+60} transY={0}
+  <g id="topgroup" transform={width>500 && width>height?"translate(0,60) scale(1.3)":width>500 && width<height?"translate(50,60) scale(1.0)":"scale(1.0)"}><Lines boundary={maxi+60} transY={0}
     strokeColor={colorScale(dimsDict[dim]["maxi"])}                                   />
    {country=="Seychelles" && dim=="unemployment"|| ["Eritrea","Somalia"].includes(country) && dim=="afofi"||["Egypt", "Mozambique", "Somalia", "Seychelles","Liberia"].includes(country) && dim=="hiv"||["Burundi", "Eritrea", "Equatorial Guinea"].includes(country) && dim=="undernourish"?(<text x={boundary/2} y="80" >no data</text>): (<Barchart
         dimsDict={dimsDict}
@@ -111,15 +110,14 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
         />)}
   </g>
       
-  <g id="supergroup" transform= 
-      {width<height?              "translate(0,10)":(width<500?"translate(350,-150)":"translate(350,-150) scale(1.3)")} >
+  <g id="supergroup"  transform= 
+      {width>500 && width>height?              "translate(470,-280) scale(1.3)":width>500 && width<height?"translate(10,-20)":"scale(1.0) translate(0,20)"} >
      < Lines boundary={maxi+60} transY={260}
     strokeColor={colorScale(dimsDict[dim]["maxi"])}                                   />
       <Legend
         dimsDict={dimsDict}
         dim={dim}
         colorScale={colorScale}
-        h={height/35}
         calcQuantiles={calcQuantiles}/>
       <Choropleth
         worldAtlas={worldAtlas}
