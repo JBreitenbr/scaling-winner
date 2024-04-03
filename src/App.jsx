@@ -98,7 +98,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
     })}
 </select></div>
   <div><svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
-  <g id="topgroup" transform={width>500 && width>height?"translate(0,60) scale(1.3)":width>500 && width<height?"translate(50,60) scale(1.0)":"scale(1.0)"}><Lines boundary={maxi+60} transY={0}
+  <g id="topgroup" transform={width>500 && width>height?"translate(0,60) scale(1.3)":width>500 && width<height?"translate(50,60) scale(1.0)":"scale(0.96) translate(15,0)"}><Lines startX={10} endX={maxi+60} startY={0} endY={270}
     strokeColor={colorScale(dimsDict[dim]["maxi"])}                                   />
    {country=="Seychelles" && dim=="unemployment"|| ["Eritrea","Somalia"].includes(country) && dim=="afofi"||["Egypt", "Mozambique", "Somalia", "Seychelles","Liberia"].includes(country) && dim=="hiv"||["Burundi", "Eritrea", "Equatorial Guinea"].includes(country) && dim=="undernourish"?(<text x={boundary/2} y="80" >no data</text>): (<Barchart
         dimsDict={dimsDict}
@@ -111,8 +111,8 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
   </g>
       
   <g id="supergroup"  transform= 
-      {width>500 && width>height?              "translate(470,-280) scale(1.3)":width>500 && width<height?"translate(10,-20)":"scale(1.0) translate(0,20)"} >
-     < Lines boundary={maxi+60} transY={260}
+      {width>500 && width>height?              "translate(490,-226) scale(1.3)":width>500 && width<height?"translate(10,-20)":"scale(0.96) translate(15,65)"} >
+     < Lines startX={10} endX={maxi+60} startY={220} endY={490}
     strokeColor={colorScale(dimsDict[dim]["maxi"])}                                   />
       <Legend
         dimsDict={dimsDict}
@@ -127,7 +127,6 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
         setCountry={setCountry}
       />
     <Buttongroup
-      h={height/35}
       yearArr={yearArr}
       colorScale={colorScale}
       year={year}

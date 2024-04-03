@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 const missingDataColor = 'gray';
-let scaleF=160;
-let projection=d3.geoMercator().scale(scaleF).translate([120,380]);
+let scaleF=140;
+let projection=d3.geoMercator().scale(scaleF).translate([120,360]);
 let path=d3.geoPath(projection);
 export const Choropleth = ({
   worldAtlas: { countries},
