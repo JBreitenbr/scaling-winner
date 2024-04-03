@@ -73,12 +73,19 @@ const handleChange2 = (event) => {
   ]);
 let boundary;
 if(width<height){
-  boundary=0.78*width;
+  if(width<500){
+    boundary=0.78*width;
+  }
+  else {
+    boundary=0.4*width;
+  }
 }
-else boundary=0.3*width;
+else if(width<1050){boundary=0.3*width;}
+else if(width < 1350){boundary=0.25*width;}
+else {boundary=0.2*width;}
 let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"]]).range([40,boundary]);
   let maxi=dimScale(dimsDict[dim]["maxi"]);
-  return (<div style={{display:"flex",flexDirection:"column"}}><h3>Africa in Data</h3>
+  return (<div style={{display:"flex",flexDirection:"column"}}><h2>Africa in Data</h2>
     <div id="dropdown-wrapper"><select id="selectButton1" value={dim} onChange={handleChange1}>
   {dimArr.map(function(item) {
       return (
@@ -98,7 +105,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
     })}
 </select></div>
   <div><svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
-  <g id="topgroup" transform={width>500 && width>height?"translate(0,60) scale(1.3)":width>500 && width<height?"translate(50,60) scale(1.0)":"scale(0.96) translate(15,0)"}><Lines startX={10} endX={maxi+60} startY={0} endY={270}
+  <g id="topgroup" transform={width>1350 && width>height?"translate(0,60) scale(1.5)":width>1000 && width>height?"translate(20,60) scale(1.25)":width>500 && width>height?"translate(20,60) scale(1.25)":width>500 && width<height?"translate(130,40) scale(1.2)":"scale(0.96) translate(15,0)"}><Lines startX={10} endX={maxi+70} startY={0} endY={280}
     strokeColor={colorScale(dimsDict[dim]["maxi"])}                                   />
    {country=="Seychelles" && dim=="unemployment"|| ["Eritrea","Somalia"].includes(country) && dim=="afofi"||["Egypt", "Mozambique", "Somalia", "Seychelles","Liberia"].includes(country) && dim=="hiv"||["Burundi", "Eritrea", "Equatorial Guinea"].includes(country) && dim=="undernourish"?(<text x={boundary/2} y="80" >no data</text>): (<Barchart
         dimsDict={dimsDict}
@@ -111,8 +118,8 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
   </g>
       
   <g id="supergroup"  transform= 
-      {width>500 && width>height?              "translate(490,-226) scale(1.3)":width>500 && width<height?"translate(10,-20)":"scale(0.96) translate(15,65)"} >
-     < Lines startX={10} endX={maxi+60} startY={220} endY={490}
+      {width>1350 && width>height?"translate(0,60) scale(1.5)":width>1000 && width>height?"translate(510,-210) scale(1.25)":width>500 && width>height?              "translate(510,-210) scale(1.25)":width>500 && width<height?"scale(1.2) translate(110,130)":"scale(0.96) translate(15,100)"} >
+     < Lines startX={10} endX={maxi+70} startY={215} endY={495}
     strokeColor={colorScale(dimsDict[dim]["maxi"])}                                   />
       <Legend
         dimsDict={dimsDict}
