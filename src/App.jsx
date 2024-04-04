@@ -105,7 +105,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
     })}
 </select></div>
   <div><svg id="canvas"  height={height} width={width} style={{backgroundColor:"beige"}}>
-  <g id="topgroup" transform={width>1350 && width>height?"translate(0,60) scale(1.5)":width>1000 && width>height?"translate(20,60) scale(1.25)":width>500 && width>height?"translate(20,60) scale(1.25)":width>500 && width<height?"translate(130,40) scale(1.2)":"scale(0.96) translate(15,0)"}><Lines startX={10} endX={maxi+70} startY={0} endY={280}
+  <g id="topgroup" transform={width>1350 && width>height?"translate(130,60) scale(1.5)":width>1050 && width>height?"translate(70,60) scale(1.3)":width>700 && width>height?"translate(20,60) scale(1.25)":width>700 && width<height?"translate(130,40) scale(1.2)":"scale(0.96) translate(15,0)"}><Lines startX={10} endX={maxi+70} startY={0} endY={280}
     strokeColor={colorScale(dimsDict[dim]["maxi"])}                                   />
    {country=="Seychelles" && dim=="unemployment"|| ["Eritrea","Somalia"].includes(country) && dim=="afofi"||["Egypt", "Mozambique", "Somalia", "Seychelles","Liberia"].includes(country) && dim=="hiv"||["Burundi", "Eritrea", "Equatorial Guinea"].includes(country) && dim=="undernourish"?(<text x={boundary/2} y="80" >no data</text>): (<Barchart
         dimsDict={dimsDict}
@@ -118,7 +118,7 @@ let dimScale=d3.scaleLinear().domain([dimsDict[dim]["mini"],dimsDict[dim]["maxi"
   </g>
       
   <g id="supergroup"  transform= 
-      {width>1350 && width>height?"translate(0,60) scale(1.5)":width>1000 && width>height?"translate(510,-210) scale(1.25)":width>500 && width>height?              "translate(510,-210) scale(1.25)":width>500 && width<height?"scale(1.2) translate(110,130)":"scale(0.96) translate(15,100)"} >
+      {width>1350 && width>height?"translate(830,-265) scale(1.5)":width>1050 && width>height?"translate(650,-215) scale(1.3)":width>700 && width>height?              "translate(510,-210) scale(1.25)":width>700 && width<height?"scale(1.2) translate(110,130)":"scale(0.96) translate(15,100)"} >
      < Lines startX={10} endX={maxi+70} startY={215} endY={495}
     strokeColor={colorScale(dimsDict[dim]["maxi"])}                                   />
       <Legend

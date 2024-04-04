@@ -12,16 +12,18 @@ pre {
   margin: 5px;
   font-family: Arial;
   font-size: 14px;
+  width: 80%;
 }
 #selectButton2 {
   margin-bottom:10px;
 }
 
-h2,h3 {
+h2 {
   text-align: center;
   font-family: 'Lora', serif;
   margin:10px 3px 10px 3px;
   font-weight: 500;
+  font-size: 24px;
 }
 .yearTab {
   border: 1px solid darkgrey;
@@ -41,9 +43,54 @@ h2,h3 {
   align-items: center;
 }
 
-#selectButton1, #selectButton2 {
-  width: 80%;
+@media screen and (min-width: 700px){
+  #selectButton1, #selectButton2 {
+  height: 24px;
+  margin: 6px;
+  font-family: Arial;
+  font-size: 16px;
 }
-#canvas {
-  font-family: serif;
+  #selectButton2 {
+    margin-bottom:12px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+}
+
+@media screen and (min-width: 1050px){
+  #selectButton1, #selectButton2 {
+  height: 32px;
+  margin: 8px;
+  margin-top: 20px;
+  font-family: Arial;
+  font-size: 20px;
+  width: 70%;
+}
+  #selectButton2 {
+    margin-bottom:16px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width: 1350px){
+  #selectButton1, #selectButton2 {
+  height: 36px;
+  margin: 10px;
+  margin-top: 30px;
+  font-family: Arial;
+  font-size: 24px;
+  width: 65%;
+}
+  #selectButton2 {
+    margin-bottom:24px;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
 }
