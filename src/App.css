@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  overflow: hidden;
+  /*overflow: hidden;*/
   font-family: 'Lora', serif;
   background-color: beige;
 }
@@ -81,16 +81,16 @@ h2 {
   #selectButton1, #selectButton2 {
   height: 36px;
   margin: 10px;
-  margin-top: 30px;
+  margin-top: 16px;
   font-family: Arial;
   font-size: 24px;
   width: 65%;
 }
   #selectButton2 {
-    margin-bottom:24px;
+    margin-bottom:16px;
   }
 
   h2 {
-    font-size: 40px;
+    font-size: 36px;
   }
 }
